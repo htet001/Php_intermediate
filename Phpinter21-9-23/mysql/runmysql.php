@@ -25,7 +25,9 @@ class runmysql
         //$this->db->insertSingleShop("Xiamoi", "192.168.0.104", "xiamoi", "111", 1);
         //$this->db->insertMultipleShop($shops);
         //$this->db->updateShop(3, "Vivo");
-        $this->db->deleteShop(5);
+        //$this->db->deleteShop(5);
+        //$this->db->getJoinData(1);
+        $this->db->fetchAllShops(1);
     }
 }
 new runmysql();
