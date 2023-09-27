@@ -5,9 +5,11 @@
     <div class="container my-5">
         <div class="col-md-8 offset-md-2">
             <div class="card bg-light p-5">
-                <!-- Register Form Start -->
+                <!-- Login Form Start -->
+                <?php flash('register_success'); ?>
+                <?php flash('login_fail'); ?>
                 <h1 class="english text-info text-center mb-3">Login To Post</h1>
-                <form action="<?php echo URLROOT . '/user/login' ?>" method="post" autocomplete="off">
+                <form action="<?php echo URLROOT . 'user/login' ?>" method="post">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label"><b>Email address</b></label>
                         <input type="email"
@@ -34,7 +36,7 @@
                         </div>
                     </div>
                 </form>
-                <!-- Register Form End -->
+                <!-- Login Form End -->
             </div>
         </div>
     </div>

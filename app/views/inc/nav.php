@@ -17,12 +17,28 @@
                 <li class="nav-item">
                     <a class="nav-link text-white english" href="#">Link</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white english" href="<?php echo URLROOT . 'user/login' ?>">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white english" href="<?php echo URLROOT . 'user/register' ?>">Register</a>
-                </li>
+
+                <div class="dropdown">
+                    <button class="english btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <?php if (getUserSession() != false) : ?>
+                        <?php echo getUserSession()->name; ?>
+                        <?php else : ?>
+                        Member
+                        <?php endif; ?>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <?php if (getUserSession() != false) : ?>
+                        <li><a class="dropdown-item english" href="<?php echo URLROOT . 'user/logout' ?>">Logout</a>
+                        </li>
+                        <?php else : ?>
+                        <li><a class="dropdown-item english" href="<?php echo URLROOT . 'user/login' ?>">Login</a></li>
+                        <li><a class="dropdown-item english" href="<?php echo URLROOT . 'user/register' ?>">Register</a>
+                        </li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+
                 <div class="dropdown">
                     <button class="english btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
