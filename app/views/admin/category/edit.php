@@ -19,8 +19,8 @@
                                  </span>
 
                                  <span>
-                                     <a><i class="fa fa-pencil-square-o text-primary" aria-hidden="true"></i></a>
-                                     <a href="#" style="text-decoration:none;"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i></a>
+                                     <a href="<?php echo URLROOT . 'category/edit/' . $cat->id ?>"><i class="fa fa-pencil-square-o text-primary" aria-hidden="true"></i></a>
+                                     <a href="<?php echo URLROOT . 'category/delete/' . $cat->id ?>" style="text-decoration:none;"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i></a>
                                  </span>
                              </li>
                          <?php endforeach; ?>
@@ -36,15 +36,15 @@
                  <?php flash('register_success'); ?>
                  <?php flash('login_fail'); ?>
                  <h1 class="english text-info text-center mb-3">Edit Category</h1>
-                 <form action="<?php echo URLROOT . 'category/create' ?>" method="post">
+                 <form action="<?php echo URLROOT . 'category/edit' ?>" method="post">
                      <div class="mb-3">
                          <label for="exampleInputEmail1" class="form-label"><b>Category Name</b></label>
-                         <input type="text" class="form-control <?php echo !empty($data['name_err']) ? 'is-invalid' : ''; ?>" name="name">
+                         <input type="text" class="form-control <?php echo !empty($data['name_err']) ? 'is-invalid' : ''; ?>" name="name" value="<?php echo $data['currentCat']->name; ?>">
                          <span class="text-danger"><?php echo !empty($data['name_err']) ? $data['name_err'] : ''; ?></span>
                      </div>
                      <div class="d-flex justify-content-end">
                          <div class="mt-3">
-                             <button class="btn btn-primary">Create</button>
+                             <button class="btn btn-primary">Update</button>
                              <button class="btn btn-outline-secondary">Cancel</button>
                          </div>
                      </div>

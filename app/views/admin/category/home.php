@@ -13,16 +13,18 @@
                      <!-- Sidebar Menu Start -->
                      <ul class="list-group">
                          <?php foreach ($data['cats'] as $cat) : ?>
-                             <li class="list-group-item rounded-0 d-flex justify-content-between">
-                                 <span>
-                                     <a href="#" style="text-decoration:none;"><?php echo $cat->name ?></a>
-                                 </span>
+                         <li class="list-group-item rounded-0 d-flex justify-content-between">
+                             <span>
+                                 <a href="#" style="text-decoration:none;"><?php echo $cat->name ?></a>
+                             </span>
 
-                                 <span>
-                                     <a href="<?php echo URLROOT . 'category/edit/' . $cat->id ?>"><i class="fa fa-pencil-square-o text-primary" aria-hidden="true"></i></a>
-                                     <a href="#"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i></a>
-                                 </span>
-                             </li>
+                             <span>
+                                 <a href="<?php echo URLROOT . 'category/edit/' . $cat->id ?>"><i
+                                         class="fa fa-pencil-square-o text-primary" aria-hidden="true"></i></a>
+                                 <a href="<?php echo URLROOT . 'category/delete/' . $cat->id ?>"><i
+                                         class="fa fa-trash-o text-danger" aria-hidden="true"></i></a>
+                             </span>
+                         </li>
                          <?php endforeach; ?>
                      </ul>
                      <!-- Sidebar Menu End -->
@@ -39,8 +41,11 @@
                  <form action="<?php echo URLROOT . 'category/create' ?>" method="post">
                      <div class="mb-3">
                          <label for="exampleInputEmail1" class="form-label"><b>Category Name</b></label>
-                         <input type="text" class="form-control <?php echo !empty($data['name_err']) ? 'is-invalid' : ''; ?>" name="name">
-                         <span class="text-danger"><?php echo !empty($data['name_err']) ? $data['name_err'] : ''; ?></span>
+                         <input type="text"
+                             class="form-control <?php echo !empty($data['name_err']) ? 'is-invalid' : ''; ?>"
+                             name="name">
+                         <span
+                             class="text-danger"><?php echo !empty($data['name_err']) ? $data['name_err'] : ''; ?></span>
                      </div>
                      <div class="d-flex justify-content-end">
                          <div class="mt-3">

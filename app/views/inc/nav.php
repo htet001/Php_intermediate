@@ -1,6 +1,6 @@
 <div class="container-fluid bg-secondary">
     <nav class="container navbar navbar-expand-lg navbar-light ">
-        <a class="navbar-brand text-white english" href="#">
+        <a class="navbar-brand text-white english" href="<?php echo URLROOT ?>">
             <img src="<?php echo URLROOT . "assets/imgs/pkt.png" ?>" alt="" width="30" height="24" class="rounded">
             <span class="english" id="pkt">P K T</span>
         </a>
@@ -11,9 +11,12 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav" id="navright">
+                <?php if (getUserSession()) : ?>
                 <li class="nav-item">
-                    <a class="nav-link text-white english" href="">Home</a>
+                    <a class="nav-link text-white english" href="<?php echo URLROOT . 'admin/home' ?>">Admin Panel</a>
                 </li>
+                <?Php endif; ?>
+
                 <li class="nav-item">
                     <a class="nav-link text-white english" href="#">Link</a>
                 </li>
