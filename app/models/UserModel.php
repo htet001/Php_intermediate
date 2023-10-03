@@ -27,11 +27,11 @@ class UserModel
     {
         $this->db->query("SELECT * FROM users WHERE email=:email");
         $this->db->bind(":email", $email);
-        $row = $this->db->singleSet();
-        if (empty($row)) {
-            return false;
-        } else {
-            return $row;
-        }
+        return $this->db->singleSet();
+        // if (empty($row)) {
+        //     return false;
+        // } else {
+        //     return $row;
+        // }
     }
 }

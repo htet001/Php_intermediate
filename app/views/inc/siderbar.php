@@ -13,9 +13,6 @@
                 <li class="list-group-item rounded-0">
                     <a href="<?php echo URLROOT . 'post/home/1'; ?>" style="text-decoration:none;">Post</a>
                 </li>
-                <li class="list-group-item rounded-0">
-                    <a href="<?php echo URLROOT . 'category/home'; ?>" style="text-decoration:none;">Edit</a>
-                </li>
             </ul>
             <!-- Sidebar Menu End -->
         </div>

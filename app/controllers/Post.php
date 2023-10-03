@@ -59,7 +59,7 @@ class Post extends Controller
 
 
             if (empty($data['title_err']) && empty($data['desc_err']) && empty($data['content_err'])) {
-                if (!empty($files['name'])) {
+                if (!empty($files)) {
                     move_uploaded_file($files['tmp_name'], $root . '/public/assets/uploads/' . $files['name']);
                     if ($this->postModel->insertPost($_POST['cat_id'], $data['title'], $data['desc'], $files['name'], $data['content'])) {
                         flash("pis", "Post Insert Successfully");
@@ -103,6 +103,7 @@ class Post extends Controller
 
             $root = dirname(dirname(dirname(__FILE__)));
             $files = $_FILES['file'];
+            $filename = $_FILES['file']['name'];
 
             $data['title'] = $_POST['title'];
             $data['desc'] = $_POST['desc'];
@@ -121,23 +122,42 @@ class Post extends Controller
             if (empty($data['title_err']) && empty($data['desc_err']) && empty($data['content_err'])) {
                 if (!empty($files['name'])) {
                     move_uploaded_file($files['tmp_name'], $root . '/public/assets/uploads/' . $files['name']);
-                    if ($this->postModel->insertPost($_POST['cat_id'], $data['title'], $data['desc'], $files['name'], $data['content'])) {
-                        flash("pis", "Post Insert Successfully");
-                        redirect(URLROOT . "post/home/1");
-                    } else {
-                        $this->view("admin/post/create", $data);
-                    }
                 } else {
-                    flash("fine", "Please Insert A File");
-                    $this->view(URLROOT . "admin/post/create", $data);
+                    $filename = $_POST['old_file'];
+                }
+                $curId = getCurrentId();
+                deleteCurrentId();
+                if ($this->postModel->updateData($curId, $_POST['cat_id'], $data['title'], $data['desc'], $filename, $data['content'])) {
+                    flash("pes", "Post Edit Success");
+                    redirect(URLROOT . 'post/show/' . $curId);
+                } else {
+                    flash("pef", "Post Edit Fail");
+                    redirect(URLROOT . "/post/edit/" . $curId);
                 }
             } else {
                 $this->view("admin/post/create", $data);
             }
         } else {
+            setCurrentId($params[0]);
             $data['cats'] = $this->catModel->getAllCategory();
             $data['post'] = $this->postModel->getPostById($params[0]);
             $this->view('admin/post/edit', $data);
+        }
+    }
+
+    public function delete($params = [])
+    {
+        $data = [
+            'cats' => '',
+            'posts' => ''
+        ];
+        if ($this->postModel->deletePost($params[0])) {
+            redirect(URLROOT . 'post/home/1');
+        } else {
+            //flash("ds", "Post Deleted Successfully");
+            $data['cats'] = $this->catModel->getAllCategory();
+            $data['posts'] = $this->postModel->getPostByCatId($params[0]);
+            $this->view("admin/post/home", $data);
         }
     }
 }

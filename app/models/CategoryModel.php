@@ -12,7 +12,6 @@ class CategoryModel
         $this->db->query("SELECT * FROM category");
         return $this->db->multipleSet();
     }
-
     public function getCategoryByName($name)
     {
         $this->db->query("SELECT * FROM category WHERE name=:name");

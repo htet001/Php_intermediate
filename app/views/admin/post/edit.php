@@ -5,6 +5,7 @@
     <div class="container my-5">
         <div class="col-md-8 offset-md-2">
             <div class="card bg-light p-5">
+                <?php flash('pef');  ?>
                 <!-- Register Form Start -->
                 <h1 class="english text-info text-center mb-3">Register To Post</h1>
                 <form action="<?php echo URLROOT . 'post/edit' ?>" method="post" enctype="multipart/form-data">
@@ -40,7 +41,7 @@
                         </label>
                         <input type="file" class="form-control-file mt-2 <?php echo !empty($data['file_err']) ? 'is-invalid' : ''; ?>" id="file" name="file">
                         <span class="text-danger"><?php echo !empty($data['file_err']) ? $data['file_err'] : ''; ?></span>
-
+                        <input type="hidden" name="old_file" value="<?php echo $data['post']->image; ?>" />
                     </div>
 
                     <div class="form-group">

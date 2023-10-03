@@ -2,10 +2,14 @@
 
 class User extends Controller
 {
+    private $postModel;
+    private $catModel;
     private $userModel;
     public function __construct()
     {
         $this->userModel = $this->model('UserModel');
+        $this->catModel = $this->model('CategoryModel');
+        $this->postModel = $this->model('PostModel');
     }
     public function register()
     {
@@ -84,7 +88,11 @@ class User extends Controller
                     $hash_pass = $rowUser->password;
                     if (password_verify($data['password'], $hash_pass)) {
                         setUserSession($rowUser);
-                        redirect(URLROOT . 'admin/home');
+                        if ($_POST['email'] === "htetshinelinn14@gmail.com") {
+                            redirect(URLROOT . 'admin/home');
+                        } else {
+                            redirect(URLROOT . 'user/member/1');
+                        }
                     } else {
                         flash("login_fail", "User Creditial Error");
                         $this->view('user/login');
@@ -103,6 +111,82 @@ class User extends Controller
     public function logout()
     {
         unsetUserSession();
-        $this->view('home/index');
+        redirect(URLROOT . "home/index/1");
+    }
+
+
+    public function member($params = [])
+    {
+        $data = [
+            'cats' => '',
+            'posts' => ''
+        ];
+        $data['cats'] = $this->catModel->getAllCategory();
+        $data['posts'] = $this->postModel->getPostByCatId($params[0]);
+        $this->view("user/member", $data);
+    }
+    public function md($params = [])
+    {
+        $post = $this->postModel->getPostById($params[0]);
+        $this->view('user/md', ['post' => $post]);
+    }
+
+
+    public function mc()
+    {
+        $data = [
+            'title' => '',
+            'desc' => '',
+            'file' => '',
+            'content' => '',
+            'title_err' => '',
+            'desc_err' => '',
+            'file_err' => '',
+            'content_err' => '',
+            'cats' => ''
+        ];
+        $data['cats'] = $this->catModel->getAllCategory();
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+            $_POST = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+            $root = dirname(dirname(dirname(__FILE__)));
+            $files = $_FILES['file'];
+
+            $data['title'] = $_POST['title'];
+            $data['desc'] = $_POST['desc'];
+            $data['content'] = $_POST['content'];
+
+            if (empty($data['title'])) {
+                $data['title_err'] = "Please enter title";
+            }
+            if (empty($data['desc'])) {
+                $data['desc_err'] = "Please enter description";
+            }
+            if (empty($data['content'])) {
+                $data['content_err'] = "Please enter content";
+            }
+
+
+
+            if (empty($data['title_err']) && empty($data['desc_err']) && empty($data['content_err'])) {
+                if (!empty($files)) {
+                    move_uploaded_file($files['tmp_name'], $root . '/public/assets/uploads/' . $files['name']);
+                    if ($this->postModel->insertPost($_POST['cat_id'], $data['title'], $data['desc'], $files['name'], $data['content'])) {
+                        flash("pis", "Post Insert Successfully");
+                        redirect(URLROOT . "user/member/1");
+                    } else {
+                        $this->view("user/mc", $data);
+                    }
+                } else {
+                    flash("fine", "Please Insert A File");
+                    $this->view(URLROOT . "user/mc", $data);
+                }
+            } else {
+                $this->view("user/mc", $data);
+            }
+        } else {
+            $this->view("user/mc", $data);
+        }
     }
 }

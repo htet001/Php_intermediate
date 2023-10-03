@@ -2,15 +2,30 @@
 
 class Home extends Controller
 {
+    private $postModel;
+    private $catModel;
     private $userModel;
+
+
     public function __construct()
     {
-        //echo "i am home ";
+        $this->postModel = $this->model("PostModel");
+        $this->catModel = $this->model("CategoryModel");
         $this->userModel = $this->model("UserModel");
     }
-    public function index($data = [])
+    public function index($params = [])
     {
-        $data = $this->userModel->getAllUser();
+        $data = [
+            'cats' => '',
+            'posts' => ''
+        ];
+        $data['cats'] = $this->catModel->getAllCategory();
+        $data['posts'] = $this->postModel->getPostByCatId($params[0]);
         $this->view("home/index", $data);
+    }
+    public function user($params = [])
+    {
+        $post = $this->postModel->getPostById($params[0]);
+        $this->view('home/user', ['post' => $post]);
     }
 }

@@ -5,8 +5,7 @@
     <div class="container my-5">
         <?php flash('pes');  ?>
         <div class="d-flex justify-content-between my-3">
-            <a href="<?php echo URLROOT . "post/home/" . $data['post']->cat_id; ?>" class="btn btn-primary">Back</a>
-            <a href="<?php echo URLROOT . "post/edit/" . $data['post']->id; ?>" class="btn btn-primary">Edit</a>
+            <a href="<?php echo URLROOT . "user/member/" . $data['post']->cat_id; ?>" class="btn btn-primary">Back</a>
         </div>
         <div class="col-md-12">
             <div class="card bg-light p-5">
