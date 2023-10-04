@@ -9,11 +9,11 @@
             <a href="<?php echo URLROOT . "post/edit/" . $data['post']->id; ?>" class="btn btn-primary">Edit</a>
         </div>
         <div class="col-md-12">
-            <div class="card bg-light p-5">
-                <div class="card-header">
+            <div class="card p-5" style="background-color: blueviolet;">
+                <div class="card-header bg-info">
                     <h6 class="english"><?php echo $data['post']->title; ?></h6>
                 </div>
-                <div class="card-body">
+                <div class="card-body text-white">
                     <img src="<?php echo URLROOT . 'assets/uploads/' . $data['post']->image; ?>" alt="" class="img-fluid">
                     <p>
                         <?php echo $data['post']->content; ?>

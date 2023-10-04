@@ -3,17 +3,18 @@
 
  <div class="container-fluid p-0">
      <div class="row no-gutters">
-         <div class="col-md-3">
+         <div class="col-md-3" style="margin: 40px 0 0 50px;">
              <!-- Sidebar Start -->
-             <div class="card rounded-0">
+             <div class="card rounded-0" style="border-color: blueviolet;">
                  <div class="card-header">
-                     <h2>Category</h2>
+                     <h2 style="color: orange;">Category</h2>
                  </div>
                  <div class="card-block">
                      <!-- Sidebar Menu Start -->
                      <ul class="list-group">
                          <?php foreach ($data['cats'] as $cat) : ?>
-                         <li class="list-group-item rounded-0 d-flex justify-content-between">
+                         <li class="list-group-item rounded-0 d-flex justify-content-between"
+                             style="border-color: blueviolet;">
                              <span>
                                  <a href="#" style="text-decoration:none;"><?php echo $cat->name ?></a>
                              </span>
@@ -31,16 +32,21 @@
                  </div>
              </div>
              <!-- Sidebar End -->
+             <div>
+                 <a href="<?php echo URLROOT . 'admin/home/1'; ?>" class="btn btn-primary"
+                     style="margin-top:30px;">back</a>
+             </div>
          </div>
          <div class="col-md-5 offset-md-2 my-5">
-             <div class="card bg-light p-5">
+             <div class="card p-5" style="background-color: blueviolet;">
                  <!-- Login Form Start -->
                  <?php flash('register_success'); ?>
                  <?php flash('login_fail'); ?>
                  <h1 class="english text-info text-center mb-3">Create Category</h1>
                  <form action="<?php echo URLROOT . 'category/create' ?>" method="post">
                      <div class="mb-3">
-                         <label for="exampleInputEmail1" class="form-label"><b>Category Name</b></label>
+                         <label for="exampleInputEmail1" class="form-label" style="color: white;"><b>Category
+                                 Name</b></label>
                          <input type="text"
                              class="form-control <?php echo !empty($data['name_err']) ? 'is-invalid' : ''; ?>"
                              name="name">
@@ -50,7 +56,7 @@
                      <div class="d-flex justify-content-end">
                          <div class="mt-3">
                              <button class="btn btn-primary">Create</button>
-                             <button class="btn btn-outline-secondary">Cancel</button>
+                             <button class="btn btn-light">Cancel</button>
                          </div>
                      </div>
                  </form>

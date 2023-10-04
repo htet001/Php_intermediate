@@ -8,17 +8,21 @@
              <div class="col-md-4">
                  <ul class="list-group">
                      <?php foreach ($data['cats'] as $cat) : ?>
-                     <li class="list-group-item">
-                         <a href="<?php echo URLROOT . 'post/home/' . $cat->id; ?>"
+                     <li class="list-group-item" style="border-color: blueviolet;">
+                         <a href=" <?php echo URLROOT . 'post/home/' . $cat->id; ?>"
                              style="text-decoration: none;"><?php echo $cat->name; ?> </a>
                      </li>
                      <?php endforeach; ?>
                  </ul>
+                 <div>
+                     <a href="<?php echo URLROOT . 'admin/home/1'; ?>" class="btn btn-primary"
+                         style="margin-top:30px;">back</a>
+                 </div>
              </div>
              <div class="col-md-8">
                  <?php foreach ($data['posts'] as $post) : ?>
-                 <div class="card mb-5">
-                     <div class="card-header bg-dark text-white">
+                 <div class="card mb-5" style="border:solid 2px;">
+                     <div class="card-header bg-primary text-white">
                          <h6><?php echo $post->title; ?></h6>
                      </div>
                      <div class="card-block p-2">

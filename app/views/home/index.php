@@ -2,12 +2,17 @@
 require_once APPROOT . "/views/inc/header.php";
 require_once APPROOT . "/views/inc/nav.php";
 ?>
+<marquee behavior="" direction="" style="color: orange;font-size:20px;padding-top:20px;">
+    <i> Welcome To Our Knowledge Sharing WEBSITE,
+        Find Your Brighter Future In Here!!
+    </i>
+</marquee>
 <div class="container-fluid">
     <div class="container my-2">
         <?php flash('del_fail'); ?>
         <div class="row">
             <div class="col col-md-4">
-                <div style="margin-top: 10px;">
+                <div>
                     <h1 style="margin-left: 25px;color:blueviolet;">Choose Category</h1>
                     <h3 style="margin-left: 50px;color:blueviolet;">To see special posts</h3>
                 </div>
@@ -19,12 +24,12 @@ require_once APPROOT . "/views/inc/nav.php";
                     <?php endforeach; ?>
                 </ul>
             </div>
-            <div class="col col-md-8">
-                <img style="margin: 50px 0 0 50px;" src="<?php echo URLROOT . "assets/imgs/user.jpg" ?>" alt="" class="rounded img-fluid">
+            <div class="col col-md-7" style="margin-left: 75px;">
+                <img style="margin-top: 50px" src="<?php echo URLROOT . "assets/imgs/user.jpg" ?>" alt="" class="rounded img-fluid">
                 <!-- Post Card Start -->
                 <?php foreach ($data['posts'] as $post) : ?>
-                    <div class="card rounded-0 mb-3">
-                        <div class="card-header bg-dark text-white rounded-0">
+                    <div class="card rounded-0 mb-3" style="border:solid 2px;">
+                        <div class="card-header bg-primary text-white rounded-0">
                             <h6 class="english"><?php echo $post->title; ?></h6>
                         </div>
                         <div class="card-body p-2">

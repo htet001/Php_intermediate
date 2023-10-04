@@ -4,12 +4,12 @@
 <div class="container-fluid">
     <div class="container my-5">
         <div class="col-md-8 offset-md-2">
-            <div class="card bg-light p-5">
+            <div class="card p-5" style="background-color: blueviolet;">
                 <!-- Register Form Start -->
                 <h1 class="english text-info text-center mb-3">Register To Post</h1>
                 <form action="<?php echo URLROOT . 'user/mc' ?>" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="cat_id" class="form-label "><b>Post Category</b></label>
+                        <label for="cat_id" class="form-label" style="color: white;"><b>Post Category</b></label>
                         <select class="form-select" id="cat_id" name="cat_id" aria-label="Example select with button addon">
                             <?php foreach ($data['cats'] as $cat) : ?>
                                 <option value="<?php echo $cat->id; ?>"><?php echo $cat->name; ?></option>
@@ -17,36 +17,43 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="title" class="form-label "><b>Title</b></label>
+                        <label for="title" class="form-label" style="color: white;"><b>Title</b></label>
                         <input type="text" class="form-control <?php echo !empty($data['title_err']) ? 'is-invalid' : ''; ?>" name="title">
                         <span class="text-danger"><?php echo !empty($data['title_err']) ? $data['title_err'] : ''; ?></span>
                     </div>
                     <div class="form-group">
                         <label for="desc">
-                            <b>Post Description</b>
+                            <b style="color: white;">Post Description</b>
                         </label>
                         <textarea class="form-control <?php echo !empty($data['desc_err']) ? 'is-invalid' : ''; ?>" id="desc" name="desc" rows="3"></textarea>
                         <span class="text-danger"><?php echo !empty($data['desc_err']) ? $data['desc_err'] : ''; ?></span>
                     </div>
                     <div class="row form-group my-3">
                         <label for="file">
-                            <b>Input File</b>
+                            <b style="color: white;">Input File</b>
                         </label>
-                        <input type="file" class="form-control-file mt-2 <?php echo !empty($data['file_err']) ? 'is-invalid' : ''; ?>" id="file" name="file">
+                        <input type="file" style="color: white;" class="form-control-file mt-2 <?php echo !empty($data['file_err']) ? 'is-invalid' : ''; ?>" id="file" name="file">
                         <span class="text-danger"><?php echo !empty($data['file_err']) ? $data['file_err'] : ''; ?></span>
                     </div>
 
                     <div class="form-group">
                         <label for="content">
-                            <b>Post Content</b>
+                            <b style="color: white;">Post Content</b>
                         </label>
                         <textarea class="form-control <?php echo !empty($data['content_err']) ? 'is-invalid' : ''; ?>" id="content" name="content" rows="5"></textarea>
                         <span class="text-danger"><?php echo !empty($data['content_err']) ? $data['content_err'] : ''; ?></span>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <div class="mt-3">
-                            <button class="btn btn-primary">Post</button>
-                            <button class="btn btn-outline-secondary">Cancel</button>
+                    <div class="d-flex justify-content-between">
+                        <div class="justify-content-start">
+                            <div>
+                                <a href="<?php echo URLROOT . 'user/member/1'; ?>" class="btn btn-primary mt-5">back</a>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end" style="margin-top: 55px;">
+                            <div>
+                                <button class="btn btn-primary">Post</button>
+                                <button class="btn btn-light">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </form>
